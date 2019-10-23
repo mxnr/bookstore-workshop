@@ -1,3 +1,14 @@
 #index:
 #    path: /
 #    controller: App\Controller\DefaultController::index
+api_login_check:
+  path: /login_check
+
+register:
+  path: /register
+  controller: App\Controller\DefaultController::register
+  methods: POST
+
+api_check:
+  path: /api-check
+  controller: App\Controller\DefaultController::api
