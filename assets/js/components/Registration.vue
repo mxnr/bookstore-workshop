@@ -1,9 +1,9 @@
 <template>
-  <div class="data">
-    <h1>Login</h1>
+  <div>
+    <h1>Registration</h1>
     <input v-model="username" type="text" name="username">
     <input v-model="password" type="password" name="password">
-    <button v-on:click="login">Send</button>
+    <button v-on:click="register">Register</button>
   </div>
 </template>
 
@@ -15,17 +15,16 @@
         username: ''
       }
     },
-    name: 'Login',
-    methods: {
-      login() {
-        this.$store.dispatch('fetchJWT', {
+    name: 'Registration',
+      methods: {
+      register() {
+        this.$store.dispatch('fetchRegistration', {
           username: this.username,
           password: this.password
         });
       }
     }
   }
-
 </script>
 
 <style scoped>

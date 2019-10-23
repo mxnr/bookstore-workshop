@@ -57,6 +57,21 @@ export default new Vuex.Store({
           commit('setBooks', response.data['hydra:member']);
         });
     },
+    async fetchRegistration ({ commit }, { username, password }) {
+      var bodyFormData = new FormData();
+      bodyFormData.set('_username', username);
+      bodyFormData.set('_password', password);
+
+      axios({
+        method: 'post',
+        url: 'http://localhost:8000/register',
+        data: bodyFormData,
+        config: { headers: {'Content-Type': 'multipart/form-data' }}
+      })
+        .then(function (response) {
+          console.log(response);
+        });
+    },
     logout({ commit }) {
       commit('logout');
       localStorage.removeItem('token');
