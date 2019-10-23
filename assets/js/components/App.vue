@@ -12,6 +12,8 @@
         username: 'johndoe',
         password: 'test'
       });
+
+      this.$store.dispatch('fetchBooks', {token: this.$store.currentJWT});
     }
   }
 </script>

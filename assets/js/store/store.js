@@ -6,11 +6,13 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    currentJWT: ''
+    currentJWT: '',
+    books: []
   },
 
   getters: {
     jwt: state => state.currentJWT,
+    books: state => state.books,
     jwtData: (state, getters) => state.currentJWT ? JSON.parse(atob(getters.jwt.split('.')[1])) : null,
   },
 
@@ -18,6 +20,9 @@ export default new Vuex.Store({
     setJWT(state, jwt) {
       // When this updates, the getters and anything bound to them updates as well.
       state.currentJWT = jwt;
+    },
+    setBooks(state, books) {
+      state.books = books;
     }
   },
 
@@ -32,5 +37,21 @@ export default new Vuex.Store({
           commit('setJWT', response.data.token);
         });
     },
+    async fetchBooks({ commit }, { token }) {
+      const config = {
+        headers: {
+          Authorization: "Bearer " + token
+        }
+      };
+      axios
+        .post(
+          'http://localhost:8000/api/books',
+          {},
+          config,
+        )
+        .then(function (response) {
+          commit('setBooks', response.data.books);
+        });
+    }
   }
 });
