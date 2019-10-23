@@ -38,21 +38,19 @@ export default new Vuex.Store({
         });
     },
     async fetchBooks({ commit, getters }) {
-      console.log(getters.jwt);
       const config = {
         headers: {
-          Authorization: "Bearer " + getters.jwt
+          Authorization: "Bearer " + getters.jwt,
         }
       };
 
       axios
         .get(
           'http://localhost:8000/api/books',
-          {},
           config,
         )
         .then(function (response) {
-          commit('setBooks', response.data.books);
+          commit('setBooks', response.data['hydra:member']);
         });
     }
   }

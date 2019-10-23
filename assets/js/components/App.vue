@@ -1,24 +1,17 @@
 <template>
   <div class="customer">
     <h1>Hi!</h1>
-    <button v-on:click="loadBooks">Load books</button>
+    <login></login>
   </div>
 </template>
 
 <script>
+  import Login from "./Login";
   export default {
     name: 'Customer',
-    mounted() {
-      this.$store.dispatch('fetchJWT', {
-        username: 'johndoe',
-        password: 'test'
-      });
+    components: {
+      Login
     },
-    methods: {
-      loadBooks() {
-        this.$store.dispatch('fetchBooks');
-      }
-    }
   }
 </script>
 
