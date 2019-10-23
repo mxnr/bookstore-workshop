@@ -1,6 +1,7 @@
 <template>
   <div class="customer">
     <h1>Hi!</h1>
+    <button v-on:click="loadBooks">Load books</button>
   </div>
 </template>
 
@@ -12,8 +13,11 @@
         username: 'johndoe',
         password: 'test'
       });
-
-      this.$store.dispatch('fetchBooks', {token: this.$store.currentJWT});
+    },
+    methods: {
+      loadBooks() {
+        this.$store.dispatch('fetchBooks');
+      }
     }
   }
 </script>

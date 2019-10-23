@@ -37,14 +37,16 @@ export default new Vuex.Store({
           commit('setJWT', response.data.token);
         });
     },
-    async fetchBooks({ commit }, { token }) {
+    async fetchBooks({ commit, getters }) {
+      console.log(getters.jwt);
       const config = {
         headers: {
-          Authorization: "Bearer " + token
+          Authorization: "Bearer " + getters.jwt
         }
       };
+
       axios
-        .post(
+        .get(
           'http://localhost:8000/api/books',
           {},
           config,
