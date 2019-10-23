@@ -6,7 +6,7 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    currentJWT: '',
+    currentJWT: localStorage.getItem('token') || '',
     books: []
   },
 
@@ -23,6 +23,9 @@ export default new Vuex.Store({
     },
     setBooks(state, books) {
       state.books = books;
+    },
+    logout(state) {
+      state.currentJWT = '';
     }
   },
 
@@ -34,6 +37,7 @@ export default new Vuex.Store({
           {'username': username, 'password': password}
           )
         .then(function (response) {
+          localStorage.setItem('token', response.data.token);
           commit('setJWT', response.data.token);
         });
     },
@@ -52,6 +56,10 @@ export default new Vuex.Store({
         .then(function (response) {
           commit('setBooks', response.data['hydra:member']);
         });
+    },
+    logout({ commit }) {
+      commit('logout');
+      localStorage.removeItem('token');
     }
   }
 });
