@@ -54,7 +54,7 @@ final class BookController extends AbstractController
         $em->flush();
 
         $update = new Update(
-            'http://127.0.0.1:3000/demo/books/2.jsonld',
+            sprintf('http://127.0.0.1:3000/demo/books/%s.jsonld', $id),
             json_encode(['listComment' => $comment])
         );
 
