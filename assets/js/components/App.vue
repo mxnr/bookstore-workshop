@@ -25,6 +25,14 @@
       Login,
       Registration
     },
+    created() {
+      const url = new URL('http://127.0.0.1:3000/hub');
+      url.searchParams.append('topic', 'http://127.0.0.1:3000/demo/books');
+      const eventSource = new EventSource(url);
+      eventSource.onmessage = e => {
+        console.log(JSON.parse(e.data));
+      }
+    },
     computed: {
       isLoggedIn () {
         return this.$store.state.currentJWT;

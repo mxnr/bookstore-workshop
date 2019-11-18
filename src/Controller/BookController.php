@@ -60,7 +60,7 @@ final class BookController extends AbstractController
 
         $globalUpdate = new Update(
             'http://127.0.0.1:3000/demo/books',
-            json_encode(['newComment' => $id])
+            json_encode(['type' => 'newComment', 'target' => $id])
         );
 
         // The Publisher service is an invokable object
