@@ -3,8 +3,12 @@
 namespace App\Controller;
 
 use App\Entity\Book;
+use App\Entity\Review;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Mercure\Publisher;
+use Symfony\Component\Mercure\Update;
+use Symfony\Component\HttpFoundation\Response;
 
 final class BookController extends AbstractController
 {
@@ -27,5 +31,42 @@ final class BookController extends AbstractController
             'book.html.twig',
             ['book' => $book]
         );
+    }
+
+    /**
+     * @Route("/publish/{id}", name="publish", requirements={"id"="\d+"})
+     */
+    public function publish(Publisher $publisher, $id) {
+        $em = $this->getDoctrine()->getManager();
+        $book = $this->getDoctrine()
+            ->getRepository(Book::class)
+            ->findOneById($id);
+
+        $comment = 'Text text text';
+
+        $review = new Review();
+        $review->book = $book;
+        $review->author = 'asd';
+        $review->rating = 10;
+        $review->publicationDate = new \DateTime();
+        $review->body = $comment;
+        $em->persist($review);
+        $em->flush();
+
+        $update = new Update(
+            'http://127.0.0.1:3000/demo/books/2.jsonld',
+            json_encode(['listComment' => $comment])
+        );
+
+        $globalUpdate = new Update(
+            'http://127.0.0.1:3000/demo/books',
+            json_encode(['newComment' => $id])
+        );
+
+        // The Publisher service is an invokable object
+        $publisher($update);
+        $publisher($globalUpdate);
+
+        return new Response('new comment published');
     }
 }

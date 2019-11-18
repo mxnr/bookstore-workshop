@@ -33,7 +33,7 @@ export default new Vuex.Store({
     async fetchJWT ({ commit }, { username, password }) {
       // Perform the HTTP request.
       axios
-        .post('http://localhost:8000/login_check',
+        .post('http://127.0.0.1:8000/login_check',
           {'username': username, 'password': password}
           )
         .then(function (response) {
@@ -50,7 +50,7 @@ export default new Vuex.Store({
 
       axios
         .get(
-          'http://localhost:8000/api/books',
+          'http://127.0.0.1:8000/api/books',
           config,
         )
         .then(function (response) {
@@ -64,7 +64,7 @@ export default new Vuex.Store({
 
       axios({
         method: 'post',
-        url: 'http://localhost:8000/register',
+        url: 'http://127.0.0.1:8000/register',
         data: bodyFormData,
         config: { headers: {'Content-Type': 'multipart/form-data' }}
       })
