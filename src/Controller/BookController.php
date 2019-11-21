@@ -54,12 +54,12 @@ final class BookController extends AbstractController
         $em->flush();
 
         $update = new Update(
-            sprintf('http://127.0.0.1:3000/demo/books/%s.jsonld', $id),
+            sprintf('http://f4b766d2.ngrok.io/demo/books/%s.jsonld', $id),
             json_encode(['listComment' => $comment])
         );
 
         $globalUpdate = new Update(
-            'http://127.0.0.1:3000/demo/books',
+            'http://f4b766d2.ngrok.io/demo/books',
             json_encode(['type' => 'newComment', 'target' => $id])
         );
 
