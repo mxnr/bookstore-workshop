@@ -13,7 +13,7 @@ use Symfony\Component\HttpFoundation\Response;
 final class BookController extends AbstractController
 {
     /**
-     * @Route("/book-info", name="info")
+     * @Route("/books-store", name="info")
      */
     public function info() {
         return $this->render(
