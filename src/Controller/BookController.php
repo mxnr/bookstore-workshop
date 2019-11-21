@@ -13,9 +13,18 @@ use Symfony\Component\HttpFoundation\Response;
 final class BookController extends AbstractController
 {
     /**
-     * @Route("/books-store", name="info")
+     * @Route("/books-store/{wildcard}", name="info", requirements={"wildcard"=".*"})
      */
     public function info() {
+        return $this->render(
+            'info.html.twig'
+        );
+    }
+
+    /**
+     * @Route("/car-store/{wildcard}", name="info", requirements={"wildcard"=".*"})
+     */
+    public function car() {
         return $this->render(
             'info.html.twig'
         );

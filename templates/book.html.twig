@@ -1,6 +1,9 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+    <script>
+        var App = {{ book | json_encode | raw }};
+    </script>
     <div class="row">
         <div class="col">
             <h4 class="row">
@@ -19,10 +22,11 @@
                 <i class="fas fa-barcode"></i>
                 {{ book.isbn }}
             </div>
-
         </div>
-
-        <div id="app" data-book-id="{{ book.id }}"></div>
+        <div id="book" data-book="{{ book | json_encode }}"></div>
     </div>
 
+{% endblock %}
+{% block javascripts %}
+    {{ encore_entry_script_tags('book') }}
 {% endblock %}
