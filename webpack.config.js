@@ -56,6 +56,10 @@ Encore
     // enables Sass/SCSS support
     .enableSassLoader()
     .enableVueLoader()
+    .addLoader({
+      test: /\.yaml$/,
+      use: 'js-yaml-loader',
+    })
 
     // uncomment if you use TypeScript
     //.enableTypeScriptLoader()

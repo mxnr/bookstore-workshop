@@ -22,15 +22,6 @@ final class BookController extends AbstractController
     }
 
     /**
-     * @Route("/car-store/{wildcard}", name="info", requirements={"wildcard"=".*"})
-     */
-    public function car() {
-        return $this->render(
-            'info.html.twig'
-        );
-    }
-
-    /**
      * @Route("/book/{id}", name="book", requirements={"id"="\d+"})
      */
     public function getBook(
