@@ -11,3 +11,5 @@ const router = new VueRouter({
     { path: '/book-info/shops', name: 'shops', component: Shops },
   ]
 });
+
+export default router;
