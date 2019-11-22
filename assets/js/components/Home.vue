@@ -7,7 +7,7 @@
     <registration v-if="!isLoggedIn"/>
 
     <div v-if="isLoggedIn">
-      <h1>Hello {{ getUsername }}</h1>
+      <h1>Hello {{ getUsername }}!</h1>
       <button v-on:click="loadBooks">Load books</button>
       <button v-on:click="logout">Logout</button>
       <ul v-if="getBooks.length > 0">

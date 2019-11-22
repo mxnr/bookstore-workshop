@@ -9,9 +9,9 @@ describe('Home', () => {
           return false;
         },
       },
+      stubs: ['router-link']
     });
 
-    expect(wrapper.isVueInstance()).toBeTrythy();
     expect(wrapper.element).toMatchSnapshot();
   });
 
@@ -28,9 +28,9 @@ describe('Home', () => {
           return [];
         }
       },
+      stubs: ['router-link']
     });
 
-    expect(wrapper.isVueInstance()).toBeTrythy();
     expect(wrapper.element).toMatchSnapshot();
   });
 });
